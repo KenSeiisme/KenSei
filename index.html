@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KenSei | Personal Portfolio</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          boxShadow: {
+            roseGlow: "0 0 35px rgba(244, 114, 182, 0.22)",
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    :root {
+      --glow-primary: rgba(244, 114, 182, 0.16);
+      --glow-secondary: rgba(168, 85, 247, 0.11);
+    }
+
+    .ambient-glow {
+      transition:
+        background-color 900ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .ambient-primary {
+      background-color: var(--glow-primary);
+    }
+
+    .ambient-secondary {
+      background-color: var(--glow-secondary);
+    }
+  </style>
+</head>
+
+<body class="bg-[#100b14] text-rose-50 selection:bg-pink-400 selection:text-[#100b14]">
+  <!-- Dynamic background glow -->
+  <div class="fixed inset-0 -z-10 overflow-hidden">
+    <div
+      id="glowPrimary"
+      class="ambient-glow ambient-primary absolute left-1/2 top-0 h-[540px] w-[540px] -translate-x-1/2 rounded-full blur-[130px]"
+    ></div>
+
+    <div
+      id="glowSecondary"
+      class="ambient-glow ambient-secondary absolute bottom-0 right-0 h-80 w-80 rounded-full blur-[110px]"
+    ></div>
+
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(16,11,20,0.25)_60%,rgba(16,11,20,0.82)_100%)]"></div>
+  </div>
+
+  <header class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
+    <a href="#" class="font-mono text-sm font-bold tracking-wider text-pink-300">
+      &lt;PROFILE /&gt;
+    </a>
+
+    <nav class="hidden gap-6 text-sm text-rose-200/60 md:flex">
+      <a href="#about" class="transition hover:text-pink-300">About</a>
+      <a href="#stack" class="transition hover:text-pink-300">Stack</a>
+      <a href="#projects" class="transition hover:text-pink-300">Projects</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section id="hero" class="mx-auto flex min-h-[78vh] max-w-6xl flex-col items-center justify-center px-6 py-16 text-center">
+      <div class="mb-8 h-32 w-32 overflow-hidden rounded-[2rem] border-2 border-pink-300/50 bg-rose-950/40 p-1 shadow-roseGlow backdrop-blur">
+        <img
+          src="profile_picture.png"
+          alt="Profile picture"
+          class="h-full w-full rounded-[1.7rem] object-cover object-center"
+        />
+      </div>
+
+      <p class="mb-4 font-mono text-sm tracking-[0.22em] text-pink-300">
+        About_Me
+      </p>
+
+      <h1 class="text-4xl font-black tracking-tight text-white sm:text-6xl">
+        KenSei
+      </h1>
+
+      <p class="mt-6 max-w-2xl text-lg leading-8 text-rose-100/65 sm:text-xl">
+        TAR UMT Computer Science Student in Malaysia · Exploring Software Development, Local AI, and System Design
+      </p>
+
+      <div class="mt-9 flex flex-wrap justify-center gap-4">
+        <!-- GitHub -->
+        <a
+          href="https://github.com/KenSeiisme"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="GitHub"
+          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:text-pink-300"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.3-3.3c-.1-.3-.6-1.6.1-3.3 0 0 1.1-.4 3.6 1.3a12.3 12.3 0 0 1 6.5 0c2.5-1.7 3.6-1.3 3.6-1.3.7 1.7.2 3 .1 3.3a4.7 4.7 0 0 1 1.3 3.3c0 4.6-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"/>
+          </svg>
+        </a>
+
+        <!-- Email -->
+        <a
+          href="mailto:haozheng00910@gmail.com"
+          aria-label="Email"
+          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:text-pink-300"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="m3 7 9 6 9-6"></path>
+          </svg>
+        </a>
+
+        <!-- Instagram -->
+        <a
+          href="https://www.instagram.com/haozheng00910/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-fuchsia-300 hover:text-fuchsia-300"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+            <circle cx="12" cy="12" r="4"></circle>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+          </svg>
+        </a>
+
+        <!-- LinkedIn -->
+        <a
+          href="https://www.linkedin.com/in/leehaozheng"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-violet-300 hover:text-violet-300"
+        >
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.33V8.98h3.42v1.57h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.47v6.28ZM5.32 7.41a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm-1.78 13.04h3.57V8.98H3.54v11.47Z"/>
+          </svg>
+        </a>
+      </div>
+
+      <a href="#projects" class="mt-12 font-mono text-sm text-rose-200/45 transition hover:text-pink-300">
+        scroll_to_explore ↓
+      </a>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="mx-auto max-w-6xl px-6 py-20">
+      <div class="grid gap-10 md:grid-cols-[0.7fr_1.3fr]">
+        <div>
+          <p class="font-mono text-sm text-violet-300">01 / ABOUT ME</p>
+          <h2 class="mt-3 text-3xl font-bold text-white">
+            Building with logic.<br />Exploring with curiosity.
+          </h2>
+        </div>
+
+        <div class="rounded-2xl border border-rose-200/10 bg-rose-950/20 p-7 leading-8 text-rose-100/65 backdrop-blur">
+          I am a computer science student who enjoys turning abstract ideas into clear,
+          maintainable systems. From C++ programming and system analysis to local AI workflows,
+          I am constantly improving my problem-solving skills while exploring technologies that shape the future.
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack -->
+    <section id="stack" class="border-y border-rose-200/10 bg-rose-950/15">
+      <div class="mx-auto max-w-6xl px-6 py-20">
+        <p class="font-mono text-sm text-emerald-300">02 / TECH STACK</p>
+        <h2 class="mt-3 text-3xl font-bold text-white">My growing toolkit</h2>
+
+        <div class="mt-10 flex flex-wrap gap-3">
+          <span class="rounded-full border border-blue-300/25 bg-blue-400/10 px-4 py-2 text-sm text-blue-200">C++</span>
+          <span class="rounded-full border border-orange-300/25 bg-orange-400/10 px-4 py-2 text-sm text-orange-200">Git / GitHub</span>
+          <span class="rounded-full border border-violet-300/25 bg-violet-400/10 px-4 py-2 text-sm text-violet-200">System Analysis & Design</span>
+          <span class="rounded-full border border-fuchsia-300/25 bg-fuchsia-400/10 px-4 py-2 text-sm text-fuchsia-200">DFD / ERD</span>
+          <span class="rounded-full border border-emerald-300/25 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-200">Ollama</span>
+          <span class="rounded-full border border-pink-300/25 bg-pink-400/10 px-4 py-2 text-sm text-pink-200">ComfyUI</span>
+          <span class="rounded-full border border-cyan-300/25 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200">Prompt Engineering</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="mx-auto max-w-6xl px-6 py-20">
+      <p class="font-mono text-sm text-pink-300">03 / SELECTED PROJECTS</p>
+      <h2 class="mt-3 text-3xl font-bold text-white">Things I have built and designed</h2>
+
+      <div class="mt-10 grid gap-6 md:grid-cols-3">
+        <article class="group rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-pink-300/50 hover:shadow-roseGlow">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-sm text-pink-300">01</span>
+            <span class="text-2xl">✦</span>
+          </div>
+          <h3 class="mt-8 text-xl font-bold text-white">C++ Salon Management System</h3>
+          <p class="mt-4 leading-7 text-rose-100/60">
+            A management system for salon operations, featuring appointment scheduling,
+            customer records, and service status tracking.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">C++</span>
+            <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">OOP</span>
+            <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">State Management</span>
+          </div>
+        </article>
+
+        <article class="group rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-violet-300/50 hover:shadow-[0_0_30px_rgba(196,181,253,0.15)]">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-sm text-violet-300">02</span>
+            <span class="text-2xl">◈</span>
+          </div>
+          <h3 class="mt-8 text-xl font-bold text-white">2D Psychological Horror Puzzle Game</h3>
+          <p class="mt-4 leading-7 text-rose-100/60">
+            A game concept centred on environmental storytelling, character state values,
+            branching exploration, and tense QTE mechanics.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Game Design</span>
+            <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">QTE</span>
+            <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">System Design</span>
+          </div>
+        </article>
+
+        <article class="group rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-emerald-300/50 hover:shadow-[0_0_30px_rgba(110,231,183,0.14)]">
+          <div class="flex items-center justify-between">
+            <span class="font-mono text-sm text-emerald-300">03</span>
+            <span class="text-2xl">⌘</span>
+          </div>
+          <h3 class="mt-8 text-xl font-bold text-white">Personal Local AI Workflow</h3>
+          <p class="mt-4 leading-7 text-rose-100/60">
+            A privacy-focused local AI environment using Ollama for Gemma and Qwen models,
+            paired with ComfyUI for image-generation experiments.
+          </p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Ollama</span>
+            <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Gemma / Qwen</span>
+            <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">ComfyUI</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-rose-200/10 px-6 py-8">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-rose-100/45 sm:flex-row">
+      <p>© 2026 KenSei · Built with HTML & Tailwind CSS</p>
+      <a href="#" class="font-mono text-pink-300 transition hover:text-pink-100">BACK TO TOP ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    const themes = {
+      hero: {
+        primary: "rgba(244, 114, 182, 0.16)",
+        secondary: "rgba(168, 85, 247, 0.11)",
+      },
+      about: {
+        primary: "rgba(167, 139, 250, 0.16)",
+        secondary: "rgba(236, 72, 153, 0.10)",
+      },
+      stack: {
+        primary: "rgba(52, 211, 153, 0.13)",
+        secondary: "rgba(45, 212, 191, 0.10)",
+      },
+      projects: {
+        primary: "rgba(244, 63, 94, 0.14)",
+        secondary: "rgba(192, 132, 252, 0.11)",
+      },
+    };
+
+    const sections = ["hero", "about", "stack", "projects"].map((id) =>
+      document.getElementById(id)
+    );
+
+    let activeTheme = "";
+
+    function updateBackgroundTheme() {
+      const viewportCenter = window.scrollY + window.innerHeight * 0.45;
+      let closestSection = sections[0];
+      let shortestDistance = Infinity;
+
+      sections.forEach((section) => {
+        const sectionCenter = section.offsetTop + section.offsetHeight / 2;
+        const distance = Math.abs(viewportCenter - sectionCenter);
+
+        if (distance < shortestDistance) {
+          shortestDistance = distance;
+          closestSection = section;
+        }
+      });
+
+      const themeName = closestSection.id;
+      if (themeName === activeTheme) return;
+
+      activeTheme = themeName;
+      const theme = themes[themeName];
+
+      document.documentElement.style.setProperty("--glow-primary", theme.primary);
+      document.documentElement.style.setProperty("--glow-secondary", theme.secondary);
+
+      const primaryGlow = document.getElementById("glowPrimary");
+      const secondaryGlow = document.getElementById("glowSecondary");
+
+      primaryGlow.style.transform =
+        themeName === "about"
+          ? "translate(-55%, 8%) scale(1.05)"
+          : themeName === "stack"
+          ? "translate(-45%, 10%) scale(0.95)"
+          : themeName === "projects"
+          ? "translate(-52%, 14%) scale(1.08)"
+          : "translate(-50%, 0) scale(1)";
+
+      secondaryGlow.style.transform =
+        themeName === "about"
+          ? "translate(-10%, -12%) scale(1.1)"
+          : themeName === "stack"
+          ? "translate(-22%, -15%) scale(0.95)"
+          : "translate(0, 0) scale(1)";
+    }
+
+    window.addEventListener("scroll", updateBackgroundTheme, { passive: true });
+    window.addEventListener("resize", updateBackgroundTheme);
+    updateBackgroundTheme();
+  </script>
+</body>
+</html>
