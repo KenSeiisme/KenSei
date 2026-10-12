@@ -3,13 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="KenSei — TAR UMT Computer Science student in Malaysia. Exploring software development, local AI, and system design." />
+  <meta name="theme-color" content="#100b14" />
   <title>KenSei | Personal Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet"
+  />
 
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          },
           boxShadow: {
             roseGlow: "0 0 35px rgba(244, 114, 182, 0.22)",
           },
@@ -24,10 +37,46 @@
       --glow-secondary: rgba(168, 85, 247, 0.11);
     }
 
+    html {
+      scrollbar-color: #f472b6 #100b14;
+    }
+
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    /* ---------- Scrollbar ---------- */
+    ::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #100b14;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(180deg, #f472b6, #a855f7);
+      border-radius: 999px;
+      border: 3px solid #100b14;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: linear-gradient(180deg, #f9a8d4, #c084fc);
+    }
+
+    /* ---------- Focus ---------- */
+    :focus-visible {
+      outline: 2px solid rgba(249, 168, 212, 0.9);
+      outline-offset: 3px;
+      border-radius: 10px;
+    }
+
+    /* ---------- Ambient glow ---------- */
     .ambient-glow {
       transition:
         background-color 900ms cubic-bezier(0.22, 1, 0.36, 1),
         transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      will-change: transform, background-color;
     }
 
     .ambient-primary {
@@ -37,10 +86,196 @@
     .ambient-secondary {
       background-color: var(--glow-secondary);
     }
+
+    /* ---------- Noise overlay ---------- */
+    .noise-layer {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+    }
+
+    /* ---------- Scroll reveal ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(26px);
+      transition:
+        opacity 900ms cubic-bezier(0.22, 1, 0.36, 1),
+        transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+      transition-delay: var(--d, 0ms);
+      will-change: opacity, transform;
+    }
+
+    .reveal.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ---------- Avatar ---------- */
+    .avatar-glow {
+      position: absolute;
+      inset: -14px;
+      border-radius: 50%;
+      background: conic-gradient(
+        from 0deg,
+        rgba(244, 114, 182, 0.75),
+        rgba(168, 85, 247, 0.65),
+        rgba(56, 189, 248, 0.45),
+        rgba(244, 114, 182, 0.75)
+      );
+      filter: blur(20px);
+      opacity: 0.55;
+      animation: spin-slow 10s linear infinite;
+      pointer-events: none;
+    }
+
+    @keyframes spin-slow {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ---------- Nav ---------- */
+    .nav-link {
+      position: relative;
+      padding: 0.4rem 0.85rem;
+      border-radius: 0.7rem;
+      color: rgba(255, 228, 230, 0.6);
+      transition: color 250ms ease, background-color 250ms ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: #f9a8d4;
+      background-color: rgba(244, 114, 182, 0.07);
+    }
+
+    .nav-link.is-active {
+      color: #f9a8d4;
+      background-color: rgba(244, 114, 182, 0.1);
+    }
+
+    .nav-link.is-active::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: 2px;
+      width: 4px;
+      height: 4px;
+      border-radius: 999px;
+      background: #f472b6;
+      transform: translateX(-50%);
+      box-shadow: 0 0 10px rgba(244, 114, 182, 0.9);
+    }
+
+    /* ---------- Chips ---------- */
+    .chip {
+      transition:
+        transform 350ms cubic-bezier(0.22, 1, 0.36, 1),
+        box-shadow 350ms ease,
+        border-color 350ms ease,
+        background-color 350ms ease;
+    }
+
+    .chip:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 26px -12px currentColor;
+    }
+
+    /* ---------- Cards ---------- */
+    .card {
+      isolation: isolate;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto 0;
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgb(var(--accent, 244 114 182) / 0.75),
+        transparent
+      );
+      opacity: 0;
+      transition: opacity 420ms ease;
+      pointer-events: none;
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background: radial-gradient(
+        420px circle at var(--x, 50%) var(--y, 0%),
+        rgb(var(--accent, 244 114 182) / 0.12),
+        transparent 62%
+      );
+      opacity: 0;
+      transition: opacity 420ms ease;
+      pointer-events: none;
+    }
+
+    .card:hover::after {
+      opacity: 1;
+    }
+
+    /* ---------- Scroll hint ---------- */
+    @keyframes floaty {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(6px);
+      }
+    }
+
+    .scroll-hint-arrow {
+      display: inline-block;
+      animation: floaty 2.6s ease-in-out infinite;
+    }
+
+    /* ---------- Progress bar ---------- */
+    #scrollProgress {
+      transform: scaleX(0);
+      transform-origin: 0 50%;
+      transition: transform 120ms linear;
+    }
+
+    /* ---------- Reduced motion ---------- */
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+      .reveal {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .avatar-glow,
+      .scroll-hint-arrow {
+        animation: none !important;
+      }
+      .ambient-glow {
+        transition: background-color 300ms linear;
+      }
+    }
   </style>
 </head>
 
-<body class="bg-[#100b14] text-rose-50 selection:bg-pink-400 selection:text-[#100b14]">
+<body class="bg-[#100b14] font-sans text-rose-50 antialiased selection:bg-pink-400 selection:text-[#100b14]">
+
+  <!-- Scroll progress -->
+  <div class="pointer-events-none fixed inset-x-0 top-0 z-50 h-[2px]">
+    <div
+      id="scrollProgress"
+      class="h-full w-full bg-gradient-to-r from-pink-400 via-fuchsia-400 to-violet-400 shadow-[0_0_14px_rgba(244,114,182,0.85)]"
+    ></div>
+  </div>
+
   <!-- Dynamic background glow -->
   <div class="fixed inset-0 -z-10 overflow-hidden">
     <div
@@ -53,54 +288,81 @@
       class="ambient-glow ambient-secondary absolute bottom-0 right-0 h-80 w-80 rounded-full blur-[110px]"
     ></div>
 
+    <div class="noise-layer pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-soft-light"></div>
+
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(16,11,20,0.25)_60%,rgba(16,11,20,0.82)_100%)]"></div>
   </div>
 
-  <header class="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-    <a href="#" class="font-mono text-sm font-bold tracking-wider text-pink-300">
-      &lt;PROFILE /&gt;
-    </a>
+  <!-- Header -->
+  <header class="sticky top-0 z-40 border-b border-rose-200/5 bg-[#100b14]/60 backdrop-blur-xl">
+    <div class="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-4">
+      <a href="#hero" class="group font-mono text-sm font-bold tracking-wider text-pink-300">
+        <span class="text-rose-200/35 transition group-hover:text-pink-300">&lt;</span>
+        PROFILE
+        <span class="text-rose-200/35 transition group-hover:text-pink-300">/&gt;</span>
+      </a>
 
-    <nav class="hidden gap-6 text-sm text-rose-200/60 md:flex">
-      <a href="#about" class="transition hover:text-pink-300">About</a>
-      <a href="#stack" class="transition hover:text-pink-300">Stack</a>
-      <a href="#projects" class="transition hover:text-pink-300">Projects</a>
-    </nav>
+      <nav class="flex items-center gap-0.5 text-sm sm:gap-1">
+        <a href="#about" data-nav="about" class="nav-link">About</a>
+        <a href="#stack" data-nav="stack" class="nav-link">Stack</a>
+        <a href="#projects" data-nav="projects" class="nav-link">Projects</a>
+      </nav>
+    </div>
   </header>
 
   <main>
     <!-- Hero -->
-    <section id="hero" class="mx-auto flex min-h-[78vh] max-w-6xl flex-col items-center justify-center px-6 py-16 text-center">
-      <div class="mb-8 h-32 w-32 overflow-hidden rounded-[2rem] border-2 border-pink-300/50 bg-rose-950/40 p-1 shadow-roseGlow backdrop-blur">
-        <img
-          src="profile_picture.png"
-          alt="Profile picture"
-          class="h-full w-full rounded-[1.7rem] object-cover object-center"
-        />
+    <section
+      id="hero"
+      class="relative mx-auto flex min-h-[78vh] max-w-6xl flex-col items-center justify-center px-6 py-16 text-center"
+    >
+      <div class="reveal relative mb-8 h-32 w-32" style="--d: 0ms">
+        <div class="avatar-glow" aria-hidden="true"></div>
+        <div
+          class="relative h-32 w-32 overflow-hidden rounded-[2rem] border-2 border-pink-300/50 bg-rose-950/40 p-1 shadow-roseGlow backdrop-blur transition-transform duration-500 ease-out hover:scale-[1.04]"
+        >
+          <img
+            src="profile_picture.png"
+            alt="Profile picture"
+            class="h-full w-full rounded-[1.7rem] object-cover object-center"
+          />
+        </div>
       </div>
 
-      <p class="mb-4 font-mono text-sm tracking-[0.22em] text-pink-300">
+      <p
+        class="reveal mb-4 font-mono text-sm tracking-[0.22em] text-pink-300"
+        style="--d: 90ms"
+      >
         About_Me
       </p>
 
-      <h1 class="text-4xl font-black tracking-tight text-white sm:text-6xl">
+      <h1
+        class="reveal bg-gradient-to-br from-white via-rose-100 to-pink-300 bg-clip-text text-4xl font-black tracking-tight text-transparent drop-shadow-[0_0_30px_rgba(244,114,182,0.25)] sm:text-6xl"
+        style="--d: 180ms"
+      >
         KenSei
       </h1>
 
-      <p class="mt-6 max-w-2xl text-lg leading-8 text-rose-100/65 sm:text-xl">
+      <p
+        class="reveal mt-6 max-w-2xl text-lg leading-8 text-rose-100/65 sm:text-xl"
+        style="--d: 260ms"
+      >
         TAR UMT Computer Science Student in Malaysia · Exploring Software Development, Local AI, and System Design
       </p>
 
-      <div class="mt-9 flex flex-wrap justify-center gap-4">
+      <div
+        class="reveal mt-9 flex flex-wrap justify-center gap-4"
+        style="--d: 340ms"
+      >
         <!-- GitHub -->
         <a
           href="https://github.com/KenSeiisme"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="GitHub"
-          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:text-pink-300"
+          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:text-pink-300 hover:shadow-[0_10px_30px_-14px_rgba(244,114,182,0.9)]"
         >
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M12 .7a11.3 11.3 0 0 0-3.6 22c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.4-4-1.4-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.8 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.4-5.5-6a4.7 4.7 0 0 1 1.3-3.3c-.1-.3-.6-1.6.1-3.3 0 0 1.1-.4 3.6 1.3a12.3 12.3 0 0 1 6.5 0c2.5-1.7 3.6-1.3 3.6-1.3.7 1.7.2 3 .1 3.3a4.7 4.7 0 0 1 1.3 3.3c0 4.6-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.2c0 .3.2.7.8.6A11.3 11.3 0 0 0 12 .7Z"/>
           </svg>
         </a>
@@ -109,9 +371,9 @@
         <a
           href="mailto:haozheng00910@gmail.com"
           aria-label="Email"
-          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:text-pink-300"
+          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:text-pink-300 hover:shadow-[0_10px_30px_-14px_rgba(244,114,182,0.9)]"
         >
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <rect x="3" y="5" width="18" height="14" rx="2"></rect>
             <path d="m3 7 9 6 9-6"></path>
           </svg>
@@ -123,9 +385,9 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Instagram"
-          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-fuchsia-300 hover:text-fuchsia-300"
+          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-fuchsia-300 hover:text-fuchsia-300 hover:shadow-[0_10px_30px_-14px_rgba(232,121,249,0.9)]"
         >
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5"></rect>
             <circle cx="12" cy="12" r="4"></circle>
             <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
@@ -138,33 +400,50 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="LinkedIn"
-          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-violet-300 hover:text-violet-300"
+          class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-violet-300 hover:text-violet-300 hover:shadow-[0_10px_30px_-14px_rgba(196,181,253,0.9)]"
         >
-          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+          <svg class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
             <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.33V8.98h3.42v1.57h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.47v6.28ZM5.32 7.41a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm-1.78 13.04h3.57V8.98H3.54v11.47Z"/>
           </svg>
         </a>
       </div>
 
-      <a href="#projects" class="mt-12 font-mono text-sm text-rose-200/45 transition hover:text-pink-300">
-        scroll_to_explore ↓
+      <a
+        href="#projects"
+        class="reveal mt-12 font-mono text-sm text-rose-200/45 transition hover:text-pink-300"
+        style="--d: 430ms"
+      >
+        scroll_to_explore <span class="scroll-hint-arrow">↓</span>
       </a>
     </section>
 
     <!-- About -->
     <section id="about" class="mx-auto max-w-6xl px-6 py-20">
       <div class="grid gap-10 md:grid-cols-[0.7fr_1.3fr]">
-        <div>
+        <div class="reveal">
           <p class="font-mono text-sm text-violet-300">01 / ABOUT ME</p>
-          <h2 class="mt-3 text-3xl font-bold text-white">
+          <h2 class="mt-3 text-3xl font-bold leading-tight text-white sm:text-4xl">
             Building with logic.<br />Exploring with curiosity.
           </h2>
         </div>
 
-        <div class="rounded-2xl border border-rose-200/10 bg-rose-950/20 p-7 leading-8 text-rose-100/65 backdrop-blur">
-          I am a computer science student who enjoys turning abstract ideas into clear,
-          maintainable systems. From C++ programming and system analysis to local AI workflows,
-          I am constantly improving my problem-solving skills while exploring technologies that shape the future.
+        <div
+          class="card reveal relative overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/20 p-7 backdrop-blur"
+          style="--d: 140ms; --accent: 167 139 250"
+        >
+          <p class="leading-8 text-rose-100/65">
+            I am a computer science student who enjoys turning abstract ideas into clear,
+            maintainable systems. From C++ programming and system analysis to local AI workflows,
+            I am constantly improving my problem-solving skills while exploring technologies that shape the future.
+          </p>
+
+          <div
+            class="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-rose-200/10 pt-5 font-mono text-xs tracking-wide text-rose-100/40"
+          >
+            <span>📍 Malaysia</span>
+            <span>🎓 TAR UMT</span>
+            <span>💡 Software · AI · Systems</span>
+          </div>
         </div>
       </div>
     </section>
@@ -172,72 +451,88 @@
     <!-- Tech Stack -->
     <section id="stack" class="border-y border-rose-200/10 bg-rose-950/15">
       <div class="mx-auto max-w-6xl px-6 py-20">
-        <p class="font-mono text-sm text-emerald-300">02 / TECH STACK</p>
-        <h2 class="mt-3 text-3xl font-bold text-white">My growing toolkit</h2>
+        <p class="reveal font-mono text-sm text-emerald-300">02 / TECH STACK</p>
+        <h2 class="reveal mt-3 text-3xl font-bold text-white sm:text-4xl" style="--d: 80ms">
+          My growing toolkit
+        </h2>
 
-        <div class="mt-10 flex flex-wrap gap-3">
-          <span class="rounded-full border border-blue-300/25 bg-blue-400/10 px-4 py-2 text-sm text-blue-200">C++</span>
-          <span class="rounded-full border border-orange-300/25 bg-orange-400/10 px-4 py-2 text-sm text-orange-200">Git / GitHub</span>
-          <span class="rounded-full border border-violet-300/25 bg-violet-400/10 px-4 py-2 text-sm text-violet-200">System Analysis & Design</span>
-          <span class="rounded-full border border-fuchsia-300/25 bg-fuchsia-400/10 px-4 py-2 text-sm text-fuchsia-200">DFD / ERD</span>
-          <span class="rounded-full border border-emerald-300/25 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-200">Ollama</span>
-          <span class="rounded-full border border-pink-300/25 bg-pink-400/10 px-4 py-2 text-sm text-pink-200">ComfyUI</span>
-          <span class="rounded-full border border-cyan-300/25 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200">Prompt Engineering</span>
+        <div class="reveal mt-10 flex flex-wrap gap-3" style="--d: 160ms">
+          <span class="chip rounded-full border border-blue-300/25 bg-blue-400/10 px-4 py-2 text-sm text-blue-200 hover:border-blue-300/60">C++</span>
+          <span class="chip rounded-full border border-orange-300/25 bg-orange-400/10 px-4 py-2 text-sm text-orange-200 hover:border-orange-300/60">Git / GitHub</span>
+          <span class="chip rounded-full border border-violet-300/25 bg-violet-400/10 px-4 py-2 text-sm text-violet-200 hover:border-violet-300/60">System Analysis &amp; Design</span>
+          <span class="chip rounded-full border border-fuchsia-300/25 bg-fuchsia-400/10 px-4 py-2 text-sm text-fuchsia-200 hover:border-fuchsia-300/60">DFD / ERD</span>
+          <span class="chip rounded-full border border-emerald-300/25 bg-emerald-400/10 px-4 py-2 text-sm text-emerald-200 hover:border-emerald-300/60">Ollama</span>
+          <span class="chip rounded-full border border-pink-300/25 bg-pink-400/10 px-4 py-2 text-sm text-pink-200 hover:border-pink-300/60">ComfyUI</span>
+          <span class="chip rounded-full border border-cyan-300/25 bg-cyan-400/10 px-4 py-2 text-sm text-cyan-200 hover:border-cyan-300/60">Prompt Engineering</span>
         </div>
       </div>
     </section>
 
     <!-- Projects -->
     <section id="projects" class="mx-auto max-w-6xl px-6 py-20">
-      <p class="font-mono text-sm text-pink-300">03 / SELECTED PROJECTS</p>
-      <h2 class="mt-3 text-3xl font-bold text-white">Things I have built and designed</h2>
+      <p class="reveal font-mono text-sm text-pink-300">03 / SELECTED PROJECTS</p>
+      <h2 class="reveal mt-3 text-3xl font-bold text-white sm:text-4xl" style="--d: 80ms">
+        Things I have built and designed
+      </h2>
 
       <div class="mt-10 grid gap-6 md:grid-cols-3">
-        <article class="group rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-pink-300/50 hover:shadow-roseGlow">
-          <div class="flex items-center justify-between">
+        <!-- 01 -->
+        <article
+          class="card reveal relative overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-pink-300/50 hover:shadow-roseGlow"
+          style="--d: 140ms; --accent: 244 114 182"
+        >
+          <div class="relative flex items-center justify-between">
             <span class="font-mono text-sm text-pink-300">01</span>
-            <span class="text-2xl">✦</span>
+            <span class="text-2xl text-pink-300/80">✦</span>
           </div>
-          <h3 class="mt-8 text-xl font-bold text-white">C++ Salon Management System</h3>
-          <p class="mt-4 leading-7 text-rose-100/60">
+          <h3 class="relative mt-8 text-xl font-bold text-white">C++ Salon Management System</h3>
+          <p class="relative mt-4 leading-7 text-rose-100/60">
             A management system for salon operations, featuring appointment scheduling,
             customer records, and service status tracking.
           </p>
-          <div class="mt-6 flex flex-wrap gap-2">
+          <div class="relative mt-6 flex flex-wrap gap-2">
             <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">C++</span>
             <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">OOP</span>
             <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">State Management</span>
           </div>
         </article>
 
-        <article class="group rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-violet-300/50 hover:shadow-[0_0_30px_rgba(196,181,253,0.15)]">
-          <div class="flex items-center justify-between">
+        <!-- 02 -->
+        <article
+          class="card reveal relative overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-violet-300/50 hover:shadow-[0_0_30px_rgba(196,181,253,0.15)]"
+          style="--d: 240ms; --accent: 167 139 250"
+        >
+          <div class="relative flex items-center justify-between">
             <span class="font-mono text-sm text-violet-300">02</span>
-            <span class="text-2xl">◈</span>
+            <span class="text-2xl text-violet-300/80">◈</span>
           </div>
-          <h3 class="mt-8 text-xl font-bold text-white">2D Psychological Horror Puzzle Game</h3>
-          <p class="mt-4 leading-7 text-rose-100/60">
+          <h3 class="relative mt-8 text-xl font-bold text-white">2D Psychological Horror Puzzle Game</h3>
+          <p class="relative mt-4 leading-7 text-rose-100/60">
             A game concept centred on environmental storytelling, character state values,
             branching exploration, and tense QTE mechanics.
           </p>
-          <div class="mt-6 flex flex-wrap gap-2">
+          <div class="relative mt-6 flex flex-wrap gap-2">
             <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Game Design</span>
             <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">QTE</span>
             <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">System Design</span>
           </div>
         </article>
 
-        <article class="group rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-emerald-300/50 hover:shadow-[0_0_30px_rgba(110,231,183,0.14)]">
-          <div class="flex items-center justify-between">
+        <!-- 03 -->
+        <article
+          class="card reveal relative overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-emerald-300/50 hover:shadow-[0_0_30px_rgba(110,231,183,0.14)]"
+          style="--d: 340ms; --accent: 52 211 153"
+        >
+          <div class="relative flex items-center justify-between">
             <span class="font-mono text-sm text-emerald-300">03</span>
-            <span class="text-2xl">⌘</span>
+            <span class="text-2xl text-emerald-300/80">⌘</span>
           </div>
-          <h3 class="mt-8 text-xl font-bold text-white">Personal Local AI Workflow</h3>
-          <p class="mt-4 leading-7 text-rose-100/60">
+          <h3 class="relative mt-8 text-xl font-bold text-white">Personal Local AI Workflow</h3>
+          <p class="relative mt-4 leading-7 text-rose-100/60">
             A privacy-focused local AI environment using Ollama for Gemma and Qwen models,
             paired with ComfyUI for image-generation experiments.
           </p>
-          <div class="mt-6 flex flex-wrap gap-2">
+          <div class="relative mt-6 flex flex-wrap gap-2">
             <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Ollama</span>
             <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Gemma / Qwen</span>
             <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">ComfyUI</span>
@@ -249,84 +544,249 @@
 
   <footer class="border-t border-rose-200/10 px-6 py-8">
     <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-rose-100/45 sm:flex-row">
-      <p>© 2026 KenSei · Built with HTML & Tailwind CSS</p>
-      <a href="#" class="font-mono text-pink-300 transition hover:text-pink-100">BACK TO TOP ↑</a>
+      <p>© <span id="year">2026</span> KenSei · Built with HTML &amp; Tailwind CSS</p>
+      <a href="#hero" class="group font-mono text-pink-300 transition hover:text-pink-100">
+        BACK TO TOP
+        <span class="inline-block transition-transform duration-300 group-hover:-translate-y-1">↑</span>
+      </a>
     </div>
   </footer>
 
+  <noscript>
+    <style>
+      .reveal { opacity: 1 !important; transform: none !important; }
+      #scrollProgress { display: none; }
+    </style>
+  </noscript>
+
   <script>
-    const themes = {
-      hero: {
-        primary: "rgba(244, 114, 182, 0.16)",
-        secondary: "rgba(168, 85, 247, 0.11)",
-      },
-      about: {
-        primary: "rgba(167, 139, 250, 0.16)",
-        secondary: "rgba(236, 72, 153, 0.10)",
-      },
-      stack: {
-        primary: "rgba(52, 211, 153, 0.13)",
-        secondary: "rgba(45, 212, 191, 0.10)",
-      },
-      projects: {
-        primary: "rgba(244, 63, 94, 0.14)",
-        secondary: "rgba(192, 132, 252, 0.11)",
-      },
-    };
+    (function () {
+      "use strict";
 
-    const sections = ["hero", "about", "stack", "projects"].map((id) =>
-      document.getElementById(id)
-    );
+      const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const finePointer = window.matchMedia("(pointer: fine)").matches;
 
-    let activeTheme = "";
+      /* ---------------- Theme map ---------------- */
+      const themes = {
+        hero: {
+          primary: "rgba(244, 114, 182, 0.16)",
+          secondary: "rgba(168, 85, 247, 0.11)",
+        },
+        about: {
+          primary: "rgba(167, 139, 250, 0.16)",
+          secondary: "rgba(236, 72, 153, 0.10)",
+        },
+        stack: {
+          primary: "rgba(52, 211, 153, 0.13)",
+          secondary: "rgba(45, 212, 191, 0.10)",
+        },
+        projects: {
+          primary: "rgba(244, 63, 94, 0.14)",
+          secondary: "rgba(192, 132, 252, 0.11)",
+        },
+      };
 
-    function updateBackgroundTheme() {
-      const viewportCenter = window.scrollY + window.innerHeight * 0.45;
-      let closestSection = sections[0];
-      let shortestDistance = Infinity;
+      const primaryTransform = {
+        hero: "translate(-50%, 0) scale(1)",
+        about: "translate(-55%, 8%) scale(1.05)",
+        stack: "translate(-45%, 10%) scale(0.95)",
+        projects: "translate(-52%, 14%) scale(1.08)",
+      };
 
-      sections.forEach((section) => {
-        const sectionCenter = section.offsetTop + section.offsetHeight / 2;
-        const distance = Math.abs(viewportCenter - sectionCenter);
+      const secondaryTransform = {
+        hero: "translate(0, 0) scale(1)",
+        about: "translate(-10%, -12%) scale(1.1)",
+        stack: "translate(-22%, -15%) scale(0.95)",
+        projects: "translate(0, 0) scale(1)",
+      };
 
-        if (distance < shortestDistance) {
-          shortestDistance = distance;
-          closestSection = section;
+      /* ---------------- Elements ---------------- */
+      const sections = ["hero", "about", "stack", "projects"]
+        .map((id) => document.getElementById(id))
+        .filter(Boolean);
+
+      const glowPrimary = document.getElementById("glowPrimary");
+      const glowSecondary = document.getElementById("glowSecondary");
+      const progressBar = document.getElementById("scrollProgress");
+      const navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
+      const root = document.documentElement;
+
+      let activeTheme = "";
+      let pointerX = 0;
+      let pointerY = 0;
+
+      /* ---------------- Glow ---------------- */
+      function applyGlow(themeName) {
+        if (!glowPrimary || !glowSecondary) return;
+
+        const key = primaryTransform[themeName] ? themeName : "hero";
+        const dx = pointerX * 26;
+        const dy = pointerY * 22;
+
+        glowPrimary.style.transform =
+          primaryTransform[key] + " translate3d(" + dx + "px, " + dy + "px, 0)";
+        glowSecondary.style.transform =
+          secondaryTransform[key] + " translate3d(" + (-dx * 0.7) + "px, " + (-dy * 0.7) + "px, 0)";
+      }
+
+      function updateBackgroundTheme() {
+        if (!sections.length) return;
+
+        const viewportCenter = window.scrollY + window.innerHeight * 0.45;
+        let closestSection = sections[0];
+        let shortestDistance = Infinity;
+
+        for (let i = 0; i < sections.length; i += 1) {
+          const section = sections[i];
+          const sectionCenter = section.offsetTop + section.offsetHeight / 2;
+          const distance = Math.abs(viewportCenter - sectionCenter);
+
+          if (distance < shortestDistance) {
+            shortestDistance = distance;
+            closestSection = section;
+          }
         }
-      });
 
-      const themeName = closestSection.id;
-      if (themeName === activeTheme) return;
+        const themeName = closestSection.id;
+        if (themeName === activeTheme) return;
 
-      activeTheme = themeName;
-      const theme = themes[themeName];
+        activeTheme = themeName;
+        const theme = themes[themeName] || themes.hero;
 
-      document.documentElement.style.setProperty("--glow-primary", theme.primary);
-      document.documentElement.style.setProperty("--glow-secondary", theme.secondary);
+        root.style.setProperty("--glow-primary", theme.primary);
+        root.style.setProperty("--glow-secondary", theme.secondary);
 
-      const primaryGlow = document.getElementById("glowPrimary");
-      const secondaryGlow = document.getElementById("glowSecondary");
+        applyGlow(themeName);
+      }
 
-      primaryGlow.style.transform =
-        themeName === "about"
-          ? "translate(-55%, 8%) scale(1.05)"
-          : themeName === "stack"
-          ? "translate(-45%, 10%) scale(0.95)"
-          : themeName === "projects"
-          ? "translate(-52%, 14%) scale(1.08)"
-          : "translate(-50%, 0) scale(1)";
+      /* ---------------- Progress bar ---------------- */
+      function updateProgress() {
+        if (!progressBar) return;
 
-      secondaryGlow.style.transform =
-        themeName === "about"
-          ? "translate(-10%, -12%) scale(1.1)"
-          : themeName === "stack"
-          ? "translate(-22%, -15%) scale(0.95)"
-          : "translate(0, 0) scale(1)";
-    }
+        const max = root.scrollHeight - window.innerHeight;
+        const ratio = max > 0 ? Math.min(Math.max(window.scrollY / max, 0), 1) : 0;
+        progressBar.style.transform = "scaleX(" + ratio + ")";
+      }
 
-    window.addEventListener("scroll", updateBackgroundTheme, { passive: true });
-    window.addEventListener("resize", updateBackgroundTheme);
-    updateBackgroundTheme();
+      /* ---------------- Active nav ---------------- */
+      function updateActiveNav() {
+        if (!sections.length || !navLinks.length) return;
+
+        const marker = window.scrollY + window.innerHeight * 0.35;
+        let current = sections[0].id;
+
+        for (let i = 0; i < sections.length; i += 1) {
+          if (sections[i].offsetTop <= marker) current = sections[i].id;
+        }
+
+        for (let i = 0; i < navLinks.length; i += 1) {
+          navLinks[i].classList.toggle("is-active", navLinks[i].dataset.nav === current);
+        }
+      }
+
+      /* ---------------- rAF scheduling ---------------- */
+      let scrollScheduled = false;
+
+      function onScrollFrame() {
+        scrollScheduled = false;
+        updateBackgroundTheme();
+        updateProgress();
+        updateActiveNav();
+      }
+
+      function scheduleScroll() {
+        if (scrollScheduled) return;
+        scrollScheduled = true;
+        window.requestAnimationFrame(onScrollFrame);
+      }
+
+      let glowScheduled = false;
+
+      function scheduleGlow() {
+        if (glowScheduled) return;
+        glowScheduled = true;
+        window.requestAnimationFrame(function () {
+          glowScheduled = false;
+          applyGlow(activeTheme || "hero");
+        });
+      }
+
+      /* ---------------- Listeners ---------------- */
+      window.addEventListener("scroll", scheduleScroll, { passive: true });
+      window.addEventListener("resize", scheduleScroll);
+      window.addEventListener("load", scheduleScroll);
+
+      if (finePointer && !reduceMotion) {
+        window.addEventListener(
+          "pointermove",
+          function (event) {
+            pointerX = (event.clientX / window.innerWidth) * 2 - 1;
+            pointerY = (event.clientY / window.innerHeight) * 2 - 1;
+            scheduleGlow();
+          },
+          { passive: true }
+        );
+      }
+
+      /* ---------------- Scroll reveal ---------------- */
+      const revealEls = document.querySelectorAll(".reveal");
+
+      if (reduceMotion || !("IntersectionObserver" in window)) {
+        for (let i = 0; i < revealEls.length; i += 1) {
+          revealEls[i].classList.add("is-visible");
+        }
+      } else {
+        const revealObserver = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("is-visible");
+                revealObserver.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: "0px 0px -8% 0px" }
+        );
+
+        for (let i = 0; i < revealEls.length; i += 1) {
+          revealObserver.observe(revealEls[i]);
+        }
+      }
+
+      /* ---------------- Card spotlight ---------------- */
+      if (finePointer && !reduceMotion) {
+        const cards = document.querySelectorAll(".card");
+
+        for (let i = 0; i < cards.length; i += 1) {
+          (function (card) {
+            card.addEventListener(
+              "pointermove",
+              function (event) {
+                const rect = card.getBoundingClientRect();
+                card.style.setProperty("--x", event.clientX - rect.left + "px");
+                card.style.setProperty("--y", event.clientY - rect.top + "px");
+              },
+              { passive: true }
+            );
+
+            card.addEventListener("pointerleave", function () {
+              card.style.removeProperty("--x");
+              card.style.removeProperty("--y");
+            });
+          })(cards[i]);
+        }
+      }
+
+      /* ---------------- Footer year ---------------- */
+      const yearEl = document.getElementById("year");
+      if (yearEl) yearEl.textContent = String(new Date().getFullYear());
+
+      /* ---------------- Init ---------------- */
+      updateBackgroundTheme();
+      updateProgress();
+      updateActiveNav();
+      applyGlow(activeTheme || "hero");
+    })();
   </script>
 </body>
 </html>
