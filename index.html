@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="KenSei — TAR UMT Computer Science student in Malaysia. Exploring software development, local AI, and system design." />
   <meta name="theme-color" content="#100b14" />
+  <meta name="author" content="KenSei" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kenseiisme.github.io/" />
+  <meta property="og:title" content="KenSei | Personal Portfolio" />
+  <meta property="og:description" content="TAR UMT Computer Science student in Malaysia, exploring software development, local AI, and system design." />
+  <meta property="og:image" content="https://kenseiisme.github.io/profile_picture.png" />
+  <meta property="og:image:alt" content="KenSei profile illustration" />
+  <meta property="og:site_name" content="KenSei Portfolio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://kenseiisme.github.io/" />
+  <meta name="twitter:title" content="KenSei | Personal Portfolio" />
+  <meta name="twitter:description" content="TAR UMT Computer Science student in Malaysia, exploring software development, local AI, and system design." />
+  <meta name="twitter:image" content="https://kenseiisme.github.io/profile_picture.png" />
   <title>KenSei | Personal Portfolio</title>
 
   <link rel="icon" href="profile_picture.png" />
@@ -174,6 +187,35 @@
       box-shadow: 0 0 10px rgba(244, 114, 182, 0.9);
     }
 
+    .mobile-menu {
+      max-height: 0;
+      opacity: 0;
+      overflow: hidden;
+      transition: max-height 280ms ease, opacity 180ms ease;
+    }
+
+    .mobile-menu.is-open {
+      max-height: 15rem;
+      opacity: 1;
+    }
+
+    .menu-icon-line {
+      transform-origin: center;
+      transition: transform 220ms ease, opacity 180ms ease;
+    }
+
+    [aria-expanded="true"] .menu-icon-line:first-child {
+      transform: translateY(5px) rotate(45deg);
+    }
+
+    [aria-expanded="true"] .menu-icon-line:nth-child(2) {
+      opacity: 0;
+    }
+
+    [aria-expanded="true"] .menu-icon-line:last-child {
+      transform: translateY(-5px) rotate(-45deg);
+    }
+
     /* ---------- Chips ---------- */
     .chip {
       transition:
@@ -232,6 +274,27 @@
       opacity: 1;
     }
 
+    .project-preview {
+      position: relative;
+      overflow: hidden;
+      min-height: 9.5rem;
+      border: 1px solid rgb(255 228 230 / 0.1);
+      border-radius: 0.9rem;
+      background: linear-gradient(145deg, rgb(var(--accent) / 0.18), rgb(15 9 20 / 0.4));
+      transition: transform 420ms cubic-bezier(0.22, 1, 0.36, 1), border-color 420ms ease;
+    }
+
+    .group:hover .project-preview,
+    .group:focus-visible .project-preview {
+      transform: scale(1.035);
+      border-color: rgb(var(--accent) / 0.45);
+    }
+
+    .preview-grid {
+      background-image: linear-gradient(rgb(255 255 255 / 0.06) 1px, transparent 1px), linear-gradient(90deg, rgb(255 255 255 / 0.06) 1px, transparent 1px);
+      background-size: 18px 18px;
+    }
+
     /* ---------- Scroll hint ---------- */
     @keyframes floaty {
       0%, 100% {
@@ -269,6 +332,10 @@
       }
       .ambient-glow {
         transition: background-color 300ms linear;
+      }
+      .mobile-menu,
+      .project-preview {
+        transition: none;
       }
     }
   </style>
@@ -310,12 +377,35 @@
         <span class="text-rose-200/35 transition group-hover:text-pink-300">/&gt;</span>
       </a>
 
-      <nav class="flex items-center gap-0.5 text-sm sm:gap-1">
+      <nav class="hidden items-center gap-0.5 text-sm sm:flex sm:gap-1" aria-label="Primary navigation">
         <a href="#about" data-nav="about" class="nav-link">About</a>
         <a href="#stack" data-nav="stack" class="nav-link">Stack</a>
         <a href="#projects" data-nav="projects" class="nav-link">Projects</a>
       </nav>
+
+      <button
+        id="menuToggle"
+        class="flex h-10 w-10 items-center justify-center rounded-xl border border-rose-200/15 bg-rose-950/30 text-rose-100 transition hover:border-pink-300 hover:text-pink-300 sm:hidden"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="mobileMenu"
+        aria-expanded="false"
+      >
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path class="menu-icon-line" d="M4 7h16"></path>
+          <path class="menu-icon-line" d="M4 12h16"></path>
+          <path class="menu-icon-line" d="M4 17h16"></path>
+        </svg>
+      </button>
     </div>
+
+    <nav id="mobileMenu" class="mobile-menu border-t border-rose-200/5 sm:hidden" aria-label="Mobile navigation">
+      <div class="mx-auto grid max-w-6xl grid-cols-3 gap-2 px-6 py-3 text-center text-sm">
+        <a href="#about" data-mobile-nav class="nav-link">About</a>
+        <a href="#stack" data-mobile-nav class="nav-link">Stack</a>
+        <a href="#projects" data-mobile-nav class="nav-link">Projects</a>
+      </div>
+    </nav>
   </header>
 
   <main>
@@ -414,6 +504,20 @@
             <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.33V8.98h3.42v1.57h.05c.48-.9 1.64-1.85 3.38-1.85 3.61 0 4.27 2.38 4.27 5.47v6.28ZM5.32 7.41a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14Zm-1.78 13.04h3.57V8.98H3.54v11.47Z"/>
           </svg>
         </a>
+
+        <a
+          href="LEE%20HAO%20ZHENG%20Resume.docx"
+          download
+          class="inline-flex h-12 items-center gap-2 rounded-xl border border-pink-300/50 bg-pink-300 px-4 font-mono text-sm font-bold text-[#28101f] transition duration-300 hover:-translate-y-1 hover:border-pink-200 hover:bg-pink-200 hover:shadow-[0_10px_30px_-12px_rgba(244,114,182,0.95)]"
+          aria-label="Download resume"
+        >
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" aria-hidden="true">
+            <path d="M12 3v12"></path>
+            <path d="m7 10 5 5 5-5"></path>
+            <path d="M5 21h14"></path>
+          </svg>
+          <span>RESUME</span>
+        </a>
       </div>
 
       <a
@@ -493,11 +597,17 @@
           class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-pink-300/50 hover:shadow-roseGlow focus-visible:-translate-y-2 focus-visible:border-pink-300/50"
           style="--d: 140ms; --accent: 244 114 182"
         >
+          <div class="project-preview preview-grid mb-6" aria-hidden="true">
+            <div class="absolute inset-4 rounded-lg border border-pink-200/15 bg-[#160d18]/75 p-3 shadow-2xl">
+              <div class="mb-3 flex gap-1.5"><span class="h-2 w-2 rounded-full bg-pink-300"></span><span class="h-2 w-2 rounded-full bg-violet-300"></span><span class="h-2 w-2 rounded-full bg-rose-100/30"></span></div>
+              <div class="space-y-2 font-mono text-[10px] text-pink-100/70"><p><span class="text-pink-300">class</span> Appointment</p><p class="pl-3 text-rose-100/45">status: confirmed</p><p class="pl-3 text-rose-100/45">time: 14:30</p></div>
+            </div>
+          </div>
           <div class="relative flex items-center justify-between">
             <span class="font-mono text-sm text-pink-300">01</span>
             <span class="text-2xl text-pink-300/80">✦</span>
           </div>
-          <h3 class="relative mt-8 text-xl font-bold text-white transition group-hover:text-pink-200">
+          <h3 class="relative mt-6 text-xl font-bold text-white transition group-hover:text-pink-200">
             C++ Salon Management System
           </h3>
           <p class="relative mt-4 leading-7 text-rose-100/60">
@@ -525,11 +635,22 @@
           class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-violet-300/50 hover:shadow-[0_0_30px_rgba(196,181,253,0.15)] focus-visible:-translate-y-2 focus-visible:border-violet-300/50"
           style="--d: 240ms; --accent: 167 139 250"
         >
+          <div class="project-preview mb-6 flex items-center justify-center bg-[#080609] p-5" aria-hidden="true">
+            <img
+              src="3a3d-preview.png"
+              alt=""
+              width="200"
+              height="112"
+              loading="lazy"
+              class="max-h-24 w-auto rounded-lg object-contain shadow-[0_14px_30px_rgba(0,0,0,0.45)]"
+            />
+            <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(115deg,transparent_20%,rgba(196,181,253,0.12),transparent_75%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100"></div>
+          </div>
           <div class="relative flex items-center justify-between">
             <span class="font-mono text-sm text-violet-300">02</span>
             <span class="text-2xl text-violet-300/80">◈</span>
           </div>
-          <h3 class="relative mt-8 text-xl font-bold text-white transition group-hover:text-violet-200">
+          <h3 class="relative mt-6 text-xl font-bold text-white transition group-hover:text-violet-200">
             3A3D Dealership
           </h3>
           <p class="relative mt-4 leading-7 text-rose-100/60">
@@ -557,11 +678,16 @@
           class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-emerald-300/50 hover:shadow-[0_0_30px_rgba(110,231,183,0.14)] focus-visible:-translate-y-2 focus-visible:border-emerald-300/50"
           style="--d: 340ms; --accent: 52 211 153"
         >
+          <div class="project-preview mb-6 bg-[radial-gradient(circle_at_65%_35%,rgba(251,113,133,0.65),transparent_18%),radial-gradient(circle_at_42%_56%,rgba(196,181,253,0.7),transparent_42%),linear-gradient(145deg,#102020,#1f1640)]" aria-hidden="true">
+            <div class="absolute inset-x-5 bottom-4 top-5 rounded-xl border border-emerald-100/20 bg-[#0c1118]/35 backdrop-blur-sm"></div>
+            <div class="absolute left-8 top-8 font-mono text-[10px] tracking-[0.25em] text-emerald-100/75">LOCAL AI</div>
+            <div class="absolute bottom-8 left-8 flex gap-2"><span class="rounded bg-emerald-300/20 px-2 py-1 font-mono text-[9px] text-emerald-100">COMFYUI</span><span class="rounded bg-violet-300/20 px-2 py-1 font-mono text-[9px] text-violet-100">SD</span></div>
+          </div>
           <div class="relative flex items-center justify-between">
             <span class="font-mono text-sm text-emerald-300">03</span>
             <span class="text-2xl text-emerald-300/80">⌘</span>
           </div>
-          <h3 class="relative mt-8 text-xl font-bold text-white transition group-hover:text-emerald-200">
+          <h3 class="relative mt-6 text-xl font-bold text-white transition group-hover:text-emerald-200">
             AI-Generated Art Gallery
           </h3>
           <p class="relative mt-4 leading-7 text-rose-100/60">
@@ -652,6 +778,9 @@
       const glowSecondary = document.getElementById("glowSecondary");
       const progressBar = document.getElementById("scrollProgress");
       const navLinks = Array.prototype.slice.call(document.querySelectorAll("[data-nav]"));
+      const menuToggle = document.getElementById("menuToggle");
+      const mobileMenu = document.getElementById("mobileMenu");
+      const mobileNavLinks = Array.prototype.slice.call(document.querySelectorAll("[data-mobile-nav]"));
       const root = document.documentElement;
 
       let activeTheme = "";
@@ -758,6 +887,30 @@
       window.addEventListener("scroll", scheduleScroll, { passive: true });
       window.addEventListener("resize", scheduleScroll);
       window.addEventListener("load", scheduleScroll);
+
+      /* ---------------- Mobile navigation ---------------- */
+      function setMobileMenu(open) {
+        if (!menuToggle || !mobileMenu) return;
+        menuToggle.setAttribute("aria-expanded", String(open));
+        menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
+        mobileMenu.classList.toggle("is-open", open);
+      }
+
+      if (menuToggle && mobileMenu) {
+        menuToggle.addEventListener("click", function () {
+          setMobileMenu(menuToggle.getAttribute("aria-expanded") !== "true");
+        });
+
+        mobileNavLinks.forEach(function (link) {
+          link.addEventListener("click", function () {
+            setMobileMenu(false);
+          });
+        });
+
+        window.addEventListener("resize", function () {
+          if (window.innerWidth >= 640) setMobileMenu(false);
+        });
+      }
 
       if (finePointer && !reduceMotion) {
         window.addEventListener(
