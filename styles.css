@@ -3,13 +3,34 @@
   --glow-secondary: rgba(168, 85, 247, 0.11);
 }
 
-html { scrollbar-color: #f472b6 #100b14; }
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  scrollbar-color: #f472b6 #100b14;
+}
 
 body {
   font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 60;
+  padding: 0.6rem 1rem;
+  border: 1px solid rgba(249, 168, 212, 0.5);
+  border-radius: 0.75rem;
+  background-color: rgba(16, 11, 20, 0.95);
+  color: #f9a8d4;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.8rem;
+  transform: translateY(-180%);
+  transition: transform 200ms ease;
+}
+.skip-link:focus-visible { transform: translateY(0); }
 
 ::-webkit-scrollbar { width: 10px; height: 10px; }
 ::-webkit-scrollbar-track { background: #100b14; }
@@ -24,6 +45,14 @@ body {
   outline: 2px solid rgba(249, 168, 212, 0.9);
   outline-offset: 3px;
   border-radius: 10px;
+}
+
+/* the skip link focuses <main>; a landmark does not need a focus ring */
+main:focus { outline: none; }
+
+/* keep the hero stable on mobile browsers where the URL bar resizes the viewport */
+@supports (height: 100svh) {
+  #hero { min-height: 78svh; }
 }
 
 .ambient-glow {
@@ -99,6 +128,10 @@ body {
 }
 .chip:hover { transform: translateY(-3px); box-shadow: 0 10px 26px -12px currentColor; }
 
+@media (hover: none) {
+  .visit-hint { opacity: 1 !important; }
+}
+
 .card { isolation: isolate; }
 .card::before {
   content: "";
@@ -122,6 +155,11 @@ body {
   pointer-events: none;
 }
 .card:hover::after { opacity: 1; }
+
+a.card:hover,
+a.card:focus-visible {
+  box-shadow: 0 0 32px rgb(var(--accent, 244 114 182) / 0.16);
+}
 
 .project-preview {
   position: relative;
@@ -152,6 +190,11 @@ body {
   transform: scaleX(0);
   transform-origin: 0 50%;
   transition: transform 120ms linear;
+}
+
+@media (max-width: 640px) {
+  #glowPrimary { filter: blur(90px); }
+  #glowSecondary { filter: blur(80px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

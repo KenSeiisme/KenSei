@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#100b14" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="robots" content="noindex" />
+  <title>404 | KenSei</title>
+
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'ui-monospace', 'SFMono-Regular', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+
+<body class="flex min-h-screen items-center justify-center bg-[#100b14] px-6 py-16 font-sans text-rose-50 antialiased selection:bg-pink-400 selection:text-[#100b14]">
+
+  <div class="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+    <div class="ambient-glow ambient-primary absolute left-1/2 top-0 h-[420px] w-[420px] -translate-x-1/2 rounded-full blur-[120px]"></div>
+    <div class="noise-layer pointer-events-none absolute inset-0 opacity-[0.035] mix-blend-soft-light"></div>
+  </div>
+
+  <main class="w-full max-w-xl text-center">
+    <p class="font-mono text-sm tracking-[0.22em] text-pink-300">&lt;404 /&gt;</p>
+
+    <h1 class="mt-6 bg-gradient-to-br from-white via-rose-100 to-pink-300 bg-clip-text text-5xl font-black text-transparent sm:text-6xl">
+      Lost in the dark
+    </h1>
+
+    <p class="mx-auto mt-5 max-w-md leading-8 text-rose-100/60">
+      This page does not exist, or it moved somewhere quieter. Nothing breaks — the portfolio is still right where you left it.
+    </p>
+
+    <div class="mt-10 flex flex-wrap items-center justify-center gap-3">
+      <a
+        href="/"
+        class="rounded-xl border border-pink-300/50 bg-rose-950/40 px-5 py-3 font-mono text-sm text-pink-200 transition duration-300 hover:-translate-y-0.5 hover:border-pink-300 hover:text-pink-100"
+      >
+        back_to_portfolio →
+      </a>
+      <a
+        href="/#projects"
+        class="rounded-xl border border-rose-200/15 bg-rose-950/20 px-5 py-3 font-mono text-sm text-rose-100/60 transition duration-300 hover:border-rose-200/35 hover:text-rose-100"
+      >
+        view_projects
+      </a>
+    </div>
+  </main>
+
+  <script>
+    const primary = document.querySelector(".ambient-primary");
+    if (primary && !window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      window.addEventListener(
+        "pointermove",
+        (event) => {
+          const x = (event.clientX / window.innerWidth) * 32 - 16;
+          const y = (event.clientY / window.innerHeight) * 24 - 12;
+          primary.style.transform = `translate(calc(-50% + ${x}px), ${y}px)`;
+        },
+        { passive: true }
+      );
+    }
+  </script>
+</body>
+</html>

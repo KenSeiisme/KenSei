@@ -95,7 +95,12 @@
     sections.forEach((section) => {
       if (section.offsetTop <= marker) current = section.id;
     });
-    navLinks.forEach((link) => link.classList.toggle("is-active", link.dataset.nav === current));
+    navLinks.forEach((link) => {
+      const isActive = link.dataset.nav === current;
+      link.classList.toggle("is-active", isActive);
+      if (isActive) link.setAttribute("aria-current", "location");
+      else link.removeAttribute("aria-current");
+    });
   }
 
   function onScrollFrame() {
@@ -125,6 +130,25 @@
     menuToggle.setAttribute("aria-expanded", String(open));
     menuToggle.setAttribute("aria-label", open ? "Close navigation menu" : "Open navigation menu");
     mobileMenu.classList.toggle("is-open", open);
+
+    if (open) {
+      document.addEventListener("keydown", onMenuKeydown);
+      document.addEventListener("pointerdown", onMenuPointerDown);
+    } else {
+      document.removeEventListener("keydown", onMenuKeydown);
+      document.removeEventListener("pointerdown", onMenuPointerDown);
+    }
+  }
+
+  function onMenuKeydown(event) {
+    if (event.key !== "Escape") return;
+    setMobileMenu(false);
+    if (menuToggle) menuToggle.focus();
+  }
+
+  function onMenuPointerDown(event) {
+    if (mobileMenu.contains(event.target) || menuToggle.contains(event.target)) return;
+    setMobileMenu(false);
   }
 
   window.addEventListener("scroll", scheduleScroll, { passive: true });

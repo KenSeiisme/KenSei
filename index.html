@@ -1,35 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="google-site-verification" content="4j0WHGeY8hIO3CXuwgWGA6Xz9ko6TZnNirX7u1E8a6s" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Welcome to my digital playground. Code. Local AI. Generative Art." />
   <meta name="theme-color" content="#100b14" />
+  <meta name="color-scheme" content="dark" />
   <meta name="author" content="KenSei" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://kensei-eta.vercel.app/" />
   <meta property="og:title" content="KenSei | Personal Portfolio" />
   <meta property="og:description" content="Welcome to my digital playground. Code. Local AI. Generative Art." />
-  <meta property="og:image" content="https://kensei-eta.vercel.app/profile_picture.png" />
-  <meta property="og:image:alt" content="KenSei profile illustration" />
+  <meta property="og:image" content="https://kensei-eta.vercel.app/og-image.png" />
+  <meta property="og:image:alt" content="KenSei — Code. Local AI. Generative Art." />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="en_US" />
   <meta property="og:site_name" content="KenSei Portfolio" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="https://kensei-eta.vercel.app/" />
   <meta name="twitter:title" content="KenSei | Personal Portfolio" />
   <meta name="twitter:description" content="Welcome to my digital playground. Code. Local AI. Generative Art." />
-  <meta name="twitter:image" content="https://kensei-eta.vercel.app/profile_picture.png" />
+  <meta name="twitter:image" content="https://kensei-eta.vercel.app/og-image.png" />
   <title>KenSei | Personal Portfolio</title>
 
-  <link rel="icon" href="profile_picture.png" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png" />
+  <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+  <link rel="manifest" href="site.webmanifest" />
+  <link rel="preload" as="image" href="profile_picture.webp" type="image/webp" fetchpriority="high" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap"
     rel="stylesheet"
   />
 
-  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -46,17 +54,37 @@
     };
   </script>
 
-  
   <script>
   /* ---------- Vercel Analytics ---------- */
   window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
   </script>
   <script defer src="/_vercel/insights/script.js"></script>
 
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "KenSei",
+      "url": "https://kensei-eta.vercel.app/",
+      "image": "https://kensei-eta.vercel.app/og-image.png",
+      "jobTitle": "Computer Science Student",
+      "alumniOf": { "@type": "CollegeOrUniversity", "name": "TAR UMT" },
+      "address": { "@type": "PostalAddress", "addressCountry": "MY" },
+      "sameAs": [
+        "https://github.com/KenSeiisme",
+        "https://www.instagram.com/haozheng00910/",
+        "https://www.pixiv.net/users/43759201",
+        "https://kensei-workshop.vercel.app/"
+      ]
+    }
+  </script>
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body class="bg-[#100b14] font-sans text-rose-50 antialiased selection:bg-pink-400 selection:text-[#100b14]">
+
+  <a href="#main" class="skip-link">Skip to content</a>
 
   <!-- Scroll progress -->
   <div class="pointer-events-none fixed inset-x-0 top-0 z-50 h-[2px]">
@@ -123,22 +151,29 @@
     </nav>
   </header>
 
-  <main>
+  <main id="main" tabindex="-1">
     <!-- Hero -->
     <section
       id="hero"
-      class="relative mx-auto flex min-h-[78vh] max-w-6xl flex-col items-center justify-center px-6 py-16 text-center"
+      class="relative mx-auto flex min-h-[78vh] max-w-6xl scroll-mt-24 flex-col items-center justify-center px-6 py-16 text-center"
     >
       <div class="reveal relative mb-8 h-32 w-32" style="--d: 0ms">
         <div class="avatar-glow" aria-hidden="true"></div>
         <div
           class="relative h-32 w-32 overflow-hidden rounded-[2rem] border-2 border-pink-300/50 bg-rose-950/40 p-1 shadow-roseGlow backdrop-blur transition-transform duration-500 ease-out hover:scale-[1.04]"
         >
-          <img
-            src="profile_picture.png"
-            alt="Profile picture"
-            class="h-full w-full rounded-[1.7rem] object-cover object-center"
-          />
+          <picture class="block h-full w-full">
+            <source srcset="profile_picture.webp" type="image/webp" />
+            <img
+              src="profile_picture.png"
+              alt="KenSei profile illustration"
+              width="128"
+              height="128"
+              decoding="async"
+              fetchpriority="high"
+              class="h-full w-full rounded-[1.7rem] object-cover object-center"
+            />
+          </picture>
         </div>
       </div>
 
@@ -150,14 +185,14 @@
       </p>
 
       <h1
-        class="reveal bg-gradient-to-br from-white via-rose-100 to-pink-300 bg-clip-text text-4xl font-black tracking-tight text-transparent drop-shadow-[0_0_30px_rgba(244,114,182,0.25)] sm:text-6xl"
+        class="reveal bg-gradient-to-br from-white via-rose-100 to-pink-300 bg-clip-text text-4xl font-black tracking-tight text-balance text-transparent drop-shadow-[0_0_30px_rgba(244,114,182,0.25)] sm:text-6xl"
         style="--d: 180ms"
       >
         KenSei
       </h1>
 
       <p
-        class="reveal mt-6 max-w-2xl text-lg leading-8 text-rose-100/65 sm:text-xl"
+        class="reveal mt-6 max-w-2xl text-pretty text-lg leading-8 text-rose-100/65 sm:text-xl"
         style="--d: 270ms"
       >
         TAR UMT Computer Science Student in Malaysia · Exploring Software Development, Local AI, and System Design
@@ -171,7 +206,7 @@
         <a
           href="https://github.com/KenSeiisme"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer me"
           aria-label="GitHub"
           class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-pink-300 hover:text-pink-300 hover:shadow-[0_10px_30px_-14px_rgba(244,114,182,0.9)]"
         >
@@ -196,7 +231,7 @@
         <a
           href="https://www.instagram.com/haozheng00910/"
           target="_blank"
-          rel="noopener noreferrer"
+          rel="noopener noreferrer me"
           aria-label="Instagram"
           class="flex h-12 w-12 items-center justify-center rounded-xl border border-rose-200/20 bg-rose-950/30 text-rose-100 transition duration-300 hover:-translate-y-1 hover:border-fuchsia-300 hover:text-fuchsia-300 hover:shadow-[0_10px_30px_-14px_rgba(232,121,249,0.9)]"
         >
@@ -210,7 +245,7 @@
 
       <a
         href="#projects"
-        class="reveal mt-12 font-mono text-sm text-rose-200/45 transition hover:text-pink-300"
+        class="reveal mt-12 font-mono text-sm text-rose-200/55 transition hover:text-pink-300"
         style="--d: 450ms"
       >
         scroll_to_explore <span class="scroll-hint-arrow">↓</span>
@@ -218,7 +253,7 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="mx-auto max-w-6xl px-6 py-20">
+    <section id="about" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
       <div class="grid gap-10 md:grid-cols-[0.7fr_1.3fr]">
         <div class="reveal">
           <p class="font-mono text-sm text-violet-300">01 / ABOUT ME</p>
@@ -231,28 +266,36 @@
           class="card reveal relative overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/20 p-7 backdrop-blur"
           style="--d: 140ms; --accent: 167 139 250"
         >
-          <p class="leading-8 text-rose-100/65">
+          <p class="text-pretty leading-8 text-rose-100/65">
             I am a computer science student who enjoys turning abstract ideas into clear,
             maintainable systems. From C++ programming and system analysis to local AI workflows,
             I am constantly improving my problem-solving skills while exploring technologies that shape the future.
           </p>
 
           <div
-            class="mt-6 flex flex-wrap gap-x-6 gap-y-2 border-t border-rose-200/10 pt-5 font-mono text-xs tracking-wide text-rose-100/40"
+            class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-2 border-t border-rose-200/10 pt-5 font-mono text-xs tracking-wide text-rose-100/55"
           >
-            <span>📍 Malaysia</span>
-            <span>🎓 TAR UMT</span>
-            <span>💡 Software · AI · Systems</span>
+            <span><span aria-hidden="true">📍</span> Malaysia</span>
+            <span><span aria-hidden="true">🎓</span> TAR UMT</span>
+            <span><span aria-hidden="true">💡</span> Software · AI · Systems</span>
+            <a
+              href="https://kensei-workshop.vercel.app/"
+              target="_blank"
+              rel="noopener noreferrer me"
+              class="text-rose-100/70 transition hover:text-pink-300"
+            >
+              <span aria-hidden="true">🛠</span> Workshop →
+            </a>
           </div>
         </div>
       </div>
     </section>
 
     <!-- Tech Stack -->
-    <section id="stack" class="border-y border-rose-200/10 bg-rose-950/15">
+    <section id="stack" class="scroll-mt-24 border-y border-rose-200/10 bg-rose-950/15">
       <div class="mx-auto max-w-6xl px-6 py-20">
         <p class="reveal font-mono text-sm text-emerald-300">02 / TECH STACK</p>
-        <h2 class="reveal mt-3 text-3xl font-bold text-white sm:text-4xl" style="--d: 80ms">
+        <h2 class="reveal mt-3 text-3xl font-bold text-balance text-white sm:text-4xl" style="--d: 80ms">
           My growing toolkit
         </h2>
 
@@ -269,9 +312,9 @@
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="mx-auto max-w-6xl px-6 py-20">
+    <section id="projects" class="mx-auto max-w-6xl scroll-mt-24 px-6 py-20">
       <p class="reveal font-mono text-sm text-pink-300">03 / SELECTED PROJECTS</p>
-      <h2 class="reveal mt-3 text-3xl font-bold text-white sm:text-4xl" style="--d: 80ms">
+      <h2 class="reveal mt-3 text-3xl font-bold text-balance text-white sm:text-4xl" style="--d: 80ms">
         Things I have built and designed
       </h2>
 
@@ -283,7 +326,7 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="View KenSei Workshop project"
-          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-fuchsia-300/50 hover:shadow-[0_0_30px_rgba(232,121,249,0.15)] focus-visible:-translate-y-2 focus-visible:border-fuchsia-300/50"
+          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-fuchsia-300/50 focus-visible:-translate-y-2 focus-visible:border-fuchsia-300/50"
           style="--d: 140ms; --accent: 232 121 249"
         >
           <div class="project-preview preview-grid mb-6" aria-hidden="true">
@@ -313,7 +356,7 @@
           <h3 class="relative mt-6 text-xl font-bold text-white transition group-hover:text-fuchsia-200">
             KenSei Workshop
           </h3>
-          <p class="relative mt-4 leading-7 text-rose-100/60">
+          <p class="relative mt-4 text-pretty leading-7 text-rose-100/60">
             Browser tools, arcade and board games, and project write-ups in one place — everything
             runs locally, so your files never leave your device.
           </p>
@@ -323,7 +366,7 @@
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Vanilla JS</span>
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Local-first</span>
             </div>
-            <span class="font-mono text-xs text-fuchsia-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+            <span class="visit-hint font-mono text-xs text-fuchsia-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
               visit →
             </span>
           </div>
@@ -335,7 +378,7 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="View KenSei Studio project"
-          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-violet-300/50 hover:shadow-[0_0_30px_rgba(196,181,253,0.15)] focus-visible:-translate-y-2 focus-visible:border-violet-300/50"
+          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-violet-300/50 focus-visible:-translate-y-2 focus-visible:border-violet-300/50"
           style="--d: 240ms; --accent: 167 139 250"
         >
           <div
@@ -373,7 +416,7 @@
           <h3 class="relative mt-6 text-xl font-bold text-white transition group-hover:text-violet-200">
             KenSei Studio
           </h3>
-          <p class="relative mt-4 leading-7 text-rose-100/60">
+          <p class="relative mt-4 text-pretty leading-7 text-rose-100/60">
             A Windows desktop editor that arranges lightsaber effects to music, previews every
             LED, and flashes ESP32-C3 stage props offline.
           </p>
@@ -383,7 +426,7 @@
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">ESPHome</span>
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Desktop App</span>
             </div>
-            <span class="font-mono text-xs text-violet-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+            <span class="visit-hint font-mono text-xs text-violet-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
               visit →
             </span>
           </div>
@@ -395,7 +438,7 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="View C++ Salon Management System project"
-          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-pink-300/50 hover:shadow-roseGlow focus-visible:-translate-y-2 focus-visible:border-pink-300/50"
+          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-pink-300/50 focus-visible:-translate-y-2 focus-visible:border-pink-300/50"
           style="--d: 340ms; --accent: 244 114 182"
         >
           <div class="project-preview preview-grid mb-6" aria-hidden="true">
@@ -419,7 +462,7 @@
           <h3 class="relative mt-6 text-xl font-bold text-white transition group-hover:text-pink-200">
             C++ Salon Management System
           </h3>
-          <p class="relative mt-4 leading-7 text-rose-100/60">
+          <p class="relative mt-4 text-pretty leading-7 text-rose-100/60">
             A management system for salon operations, featuring appointment scheduling,
             customer records, and service status tracking.
           </p>
@@ -429,7 +472,7 @@
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">OOP</span>
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">State Management</span>
             </div>
-            <span class="font-mono text-xs text-pink-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+            <span class="visit-hint font-mono text-xs text-pink-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
               visit →
             </span>
           </div>
@@ -441,7 +484,7 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="View 3A3D Dealership project"
-          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-violet-300/50 hover:shadow-[0_0_30px_rgba(196,181,253,0.15)] focus-visible:-translate-y-2 focus-visible:border-violet-300/50"
+          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-violet-300/50 focus-visible:-translate-y-2 focus-visible:border-violet-300/50"
           style="--d: 440ms; --accent: 167 139 250"
         >
           <div class="project-preview mb-6 flex items-center justify-center bg-[#080609] p-5" aria-hidden="true">
@@ -462,7 +505,7 @@
           <h3 class="relative mt-6 text-xl font-bold text-white transition group-hover:text-violet-200">
             3A3D Dealership
           </h3>
-          <p class="relative mt-4 leading-7 text-rose-100/60">
+          <p class="relative mt-4 text-pretty leading-7 text-rose-100/60">
             An online car showcase featuring the iconic JDM legends from Initial D — Toyota AE86,
             Mazda RX-7, Nissan GT-R R32, and more — with full engine, power, and drivetrain specs.
           </p>
@@ -472,7 +515,7 @@
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">CSS</span>
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Vercel</span>
             </div>
-            <span class="font-mono text-xs text-violet-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+            <span class="visit-hint font-mono text-xs text-violet-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
               visit →
             </span>
           </div>
@@ -484,7 +527,7 @@
           target="_blank"
           rel="noopener noreferrer"
           aria-label="View AI-Generated Art Gallery project"
-          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-emerald-300/50 hover:shadow-[0_0_30px_rgba(110,231,183,0.14)] focus-visible:-translate-y-2 focus-visible:border-emerald-300/50"
+          class="card reveal group relative block overflow-hidden rounded-2xl border border-rose-200/10 bg-rose-950/25 p-6 transition duration-300 hover:-translate-y-2 hover:border-emerald-300/50 focus-visible:-translate-y-2 focus-visible:border-emerald-300/50"
           style="--d: 540ms; --accent: 52 211 153"
         >
           <div class="project-preview mb-6 bg-[radial-gradient(circle_at_65%_35%,rgba(251,113,133,0.65),transparent_18%),radial-gradient(circle_at_42%_56%,rgba(196,181,253,0.7),transparent_42%),linear-gradient(145deg,#102020,#1f1640)]" aria-hidden="true">
@@ -499,7 +542,7 @@
           <h3 class="relative mt-6 text-xl font-bold text-white transition group-hover:text-emerald-200">
             AI-Generated Art Gallery
           </h3>
-          <p class="relative mt-4 leading-7 text-rose-100/60">
+          <p class="relative mt-4 text-pretty leading-7 text-rose-100/60">
             A collection of illustrations created through my local AI pipeline —
             Stable Diffusion models running on ComfyUI, refined with prompt engineering
             and upscaling workflows in Ollama.
@@ -510,10 +553,26 @@
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">Stable Diffusion</span>
               <span class="rounded bg-rose-950 px-2.5 py-1 text-xs text-rose-100/75">ComfyUI</span>
             </div>
-            <span class="font-mono text-xs text-emerald-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
+            <span class="visit-hint font-mono text-xs text-emerald-300 opacity-0 transition duration-300 group-hover:opacity-100 group-focus-visible:opacity-100">
               visit →
             </span>
           </div>
+        </a>
+
+        <!-- CTA -->
+        <a
+          href="https://github.com/KenSeiisme"
+          target="_blank"
+          rel="noopener noreferrer me"
+          aria-label="View all projects on GitHub"
+          class="card reveal group relative flex flex-col items-center justify-center rounded-2xl border border-dashed border-rose-200/15 bg-rose-950/10 p-8 text-center transition duration-300 hover:-translate-y-2 hover:border-pink-300/40 hover:bg-rose-950/20 focus-visible:-translate-y-2 focus-visible:border-pink-300/40"
+          style="--d: 640ms; --accent: 244 114 182"
+        >
+          <span class="font-mono text-2xl text-pink-300/80 transition group-hover:text-pink-200" aria-hidden="true">↗</span>
+          <span class="mt-5 font-mono text-sm tracking-[0.18em] text-rose-100/75 transition group-hover:text-pink-200">
+            VIEW ALL ON GITHUB
+          </span>
+          <span class="mt-3 text-sm text-rose-100/55">More experiments, notes and side quests</span>
         </a>
 
       </div>
@@ -521,7 +580,7 @@
   </main>
 
   <footer class="border-t border-rose-200/10 px-6 py-8">
-    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-rose-100/45 sm:flex-row">
+    <div class="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 text-sm text-rose-100/55 sm:flex-row">
       <p>© <span id="year">2026</span> KenSei · Built with HTML, CSS & Vanilla JavaScript</p>
       <a href="#hero" class="group font-mono text-pink-300 transition hover:text-pink-100">
         BACK TO TOP
